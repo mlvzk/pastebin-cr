@@ -1,4 +1,4 @@
-# 21 LOC pastebin in Crystal
+# 19 LOC pastebin in Crystal
 
 To try it out send a POST request with a form containing a `file`, the response body is the pastebin ID.
 
