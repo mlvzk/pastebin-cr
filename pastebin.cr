@@ -10,11 +10,11 @@ server = HTTP::Server.new do |context|
       next if part.name != "file"
 
       generated_name = Random::Secure.urlsafe_base64 6
-      File.open(generated_name, "w") { |f| IO.copy(part.body, f) }
+      File.open("files/#{generated_name}", "w") { |f| IO.copy(part.body, f) }
       context.response << generated_name
     end
   when "GET"
-    File.open (context.request.path.split("/")[1]) do |f|
+    File.open("files/#{context.request.path.split("/")[1]}") do |f|
       IO.copy f, context.response.output
     end
   end
