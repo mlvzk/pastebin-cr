@@ -13,7 +13,8 @@ server = HTTP::Server.new do |context|
       context.response << generated_name
     end
   elsif context.request.method == "GET"
-    File.open("files/#{context.request.path.split('/')[1]}") { |f| IO.copy f, context.response.output }
+    path = "files/#{context.request.path.split('/')[1]}"
+    File.open(path) { |f| IO.copy f, context.response.output }
   end
 end
 
